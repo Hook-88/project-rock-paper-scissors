@@ -26,12 +26,36 @@ const itsATie = (playerSelection, computerSelection) => {
 }
 
 //create function playerIsWinner with playerSelection and computerSelection as arguments
-//check if (playerSelection equals 'ROCK' and computerSelection equals 'SCISSORS') OR (playerSelection equals 'PAPER' and computerSelection equals 'ROCK') OR (playerSelection equals 'SCISSORS' and computerSelection equals 'PAPER')
-// if true return true
-//else return fals  
+const playerIsWinner = (playerSelection, computerSelection) => {
+  //check if (playerSelection equals 'ROCK' and computerSelection equals 'SCISSORS') OR (playerSelection equals 'PAPER' and computerSelection equals 'ROCK') OR (playerSelection equals 'SCISSORS' and computerSelection equals 'PAPER')
+  if (
+      (playerSelection === WEAPONS[0] && computerSelection === WEAPONS[2]) ||
+      (playerSelection === WEAPONS[1] && computerSelection === WEAPONS[0]) ||
+      (playerSelection === WEAPONS[2] && computerSelection === WEAPONS[1])
+      ) {
+      // if true return true  
+        return true
+        //else return false  
+      } else {
+        false
+      }
+}
 
 
 
 //create function singleRound with playerSelection and computerSelection as arguments
-//
+const playRound = (playerSelection, computerSelection) => {
+  let playerDefSelection = playerSelection.toUpperCase();
+  if (itsATie(playerDefSelection, computerSelection)) {
+    return `It's a tie!`
+  } else if (playerIsWinner(playerDefSelection, computerSelection)) {
+    return `You win!, ${playerDefSelection} beats ${computerSelection}`
+  } else {
+    return `You lose!, ${computerSelection} beats ${playerDefSelection}`
+  }
+}
+
+let player = prompt('Choose your weapon!');
+let computer = computerChoice(WEAPONS);
+console.log(playRound(player, computer))
 
