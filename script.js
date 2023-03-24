@@ -1,6 +1,6 @@
 //create a constant string array variable and name it ROCKPAPERSCISSORS
 //set ROCKPAPERSCISSORS to the strings rock, paper, scissors
-const ROCKPAPERSCISSORS = ['Rock', 'Paper', 'Scissors'];
+const ROCKPAPERSCISSORS = ['ROCK', 'PAPER', 'SCRISSORS'];
 //create function getComputerChoice that takes an array as argument
 const getComputerChoice = (arr) => {
 //  create a number variable randomNumber
@@ -17,3 +17,15 @@ const getComputerChoice = (arr) => {
   return arr[randomNumber];
 // 
 }
+
+//create function playRound that takes computerCh and playerCh ad arguments
+//create a string variable gameMessage
+//create a string variable playersChoice
+//create a string variable computerChoice
+// set computerChoice to computerCh
+//set playersChoice to playersCh
+//transform al chars in of playerChoice to uppercase
+//compare playerChoice with computerCh
+//determine winner 
+//set gameMessage
+//return gameMessage
