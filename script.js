@@ -2,6 +2,8 @@
 const WEAPONS = [];
 //push 'ROCK', 'PAPER', 'SCISSORS' to WEAPONS array
 WEAPONS.push('ROCK', 'PAPER', 'SCISSORS');
+let computerScore = 0;
+let playerScore = 0;
 //create function computerChoice with weaponsArr as argument
 const computerChoice = (weaponsArr) => {
   //generate random number between 0 and 2
@@ -80,13 +82,24 @@ const playRound = (playerSelection, computerSelection) => {
 
 //game();
 
+const resultContainer = document.createElement('div');
+const buttonsContainer = document.querySelector('#button-container');
+const computerScoreElement = document.querySelector('#score-computer');
+const playerScoreElement = document.querySelector('#score-player');
+
+buttonsContainer.appendChild(resultContainer);
+
+const printMessage = (message, messageContainer) => {
+  let paragraph = document.createElement('p');
+  paragraph.innerHTML = message;
+  messageContainer.appendChild(paragraph);
+  return false;
+}
+
 const buttons = document.querySelectorAll('button');
 buttons.forEach( button => {
   button.addEventListener('click', e => {
-    let gameRound = playRound(e.target.value, computerChoice(WEAPONS));
-    console.log(gameRound);
+    let gameRound = playRound(e.target.value, computerChoice(WEAPONS));  
+    printMessage(gameRound, resultContainer);
   })
-})
-
-
-
+});
