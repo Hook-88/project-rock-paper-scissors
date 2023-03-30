@@ -55,27 +55,38 @@ const playRound = (playerSelection, computerSelection) => {
   }
 }
 
-const game = () => {
-  let playerWins = 0;
-  let computerWins = 0;
-  let ties = 0;
-  for (let i = 0; i < 5; i++) {
-    let player = prompt('Choose your weapon!');
-    let computer = computerChoice(WEAPONS);
-    let message = playRound(player, computer);
-    if (message.substring(4,7) === 'win') {
-      playerWins++;
-      console.log(message);
-    } else if (message.substring(4,7) === 'los') {
-      computerWins++;
-      console.log(message)
-    } else {
-      ties++
-      console.log(message)
-    }
-  }
-  console.log(`Player has won ${playerWins} times`);
-  console.log(`Computer has won ${computerWins} times`);
-}
+// const game = () => {
+//   let playerWins = 0;
+//   let computerWins = 0;
+//   let ties = 0;
+//   for (let i = 0; i < 5; i++) {
+//     let player = prompt('Choose your weapon!');
+//     let computer = computerChoice(WEAPONS);
+//     let message = playRound(player, computer);
+//     if (message.substring(4,7) === 'win') {
+//       playerWins++;
+//       console.log(message);
+//     } else if (message.substring(4,7) === 'los') {
+//       computerWins++;
+//       console.log(message)
+//     } else {
+//       ties++
+//       console.log(message)
+//     }
+//   }
+//   console.log(`Player has won ${playerWins} times`);
+//   console.log(`Computer has won ${computerWins} times`);
+// }
 
-game();
+//game();
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach( button => {
+  button.addEventListener('click', e => {
+    let gameRound = playRound(e.target.value, computerChoice(WEAPONS));
+    console.log(gameRound);
+  })
+})
+
+
+
