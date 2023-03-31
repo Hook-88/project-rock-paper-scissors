@@ -2,8 +2,8 @@
 const WEAPONS = [];
 //push 'ROCK', 'PAPER', 'SCISSORS' to WEAPONS array
 WEAPONS.push('ROCK', 'PAPER', 'SCISSORS');
-let computerScore = 0;
-let playerScore = 0;
+let COMPUTERSCORE = 0;
+let PLAYERSCORE = 0;
 //create function computerChoice with weaponsArr as argument
 const computerChoice = (weaponsArr) => {
   //generate random number between 0 and 2
@@ -51,8 +51,10 @@ const playRound = (playerSelection, computerSelection) => {
   if (itsATie(playerDefSelection, computerSelection)) {
     return `It's a tie!`
   } else if (playerIsWinner(playerDefSelection, computerSelection)) {
+    PLAYERSCORE++;
     return `You win!, ${playerDefSelection} beats ${computerSelection}`
   } else {
+    COMPUTERSCORE++;
     return `You lose!, ${computerSelection} beats ${playerDefSelection}`
   }
 }
@@ -101,5 +103,14 @@ buttons.forEach( button => {
   button.addEventListener('click', e => {
     let gameRound = playRound(e.target.value, computerChoice(WEAPONS));  
     printMessage(gameRound, resultContainer);
+    displayScores(PLAYERSCORE, COMPUTERSCORE);
   })
 });
+
+const displayScores = (playerScore, computerScore) => {
+  computerScoreElement.innerHTML = computerScore;
+  playerScoreElement.innerHTML = playerScore;
+}
+
+displayScores(PLAYERSCORE, COMPUTERSCORE);
+
