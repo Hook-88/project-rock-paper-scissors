@@ -14,7 +14,14 @@ function getComputerChoice (arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+function addRoundsResultContainer () {
+  const body = document.querySelector('body');
+  const roundsResultContainer = document.createElement('div');
+  body.appendChild(roundsResultContainer);
+}
+
 
 displayScores(playerScore, computerScore);
+
 
 
