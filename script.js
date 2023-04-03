@@ -30,18 +30,20 @@ function setUpGame () {
 function playRound (e) {
   const computerChoice = getComputerChoice(WEAPONS);
   const playerChoice = e.target.value;
-  if (roundIsATie(playerChoice, computerChoice)) {
+  printRoundResult(playerChoice, computerChoice);
+}
+
+function printRoundResult (choicePlayer, choiceComputer) {
+  if (roundIsATie(choicePlayer, choiceComputer)) {
     printMessage("it's a tie");
   } else {
-    if (playerIsRoundWinner(playerChoice, computerChoice)) {
-      printMessage(`You win ${playerChoice} beats ${computerChoice}`);
+    if (playerIsRoundWinner(choicePlayer, choiceComputer)) {
+      printMessage(`You win ${choicePlayer} beats ${choiceComputer}`);
     } else {
-      printMessage(`You lose ${computerChoice} beats ${playerChoice}`);
+      printMessage(`You lose ${choicePlayer} beats ${choiceComputer}`);
     }
   }
 }
-
-
 
 function addClickEventToButtons () {
   const buttons = document.querySelectorAll('button');
