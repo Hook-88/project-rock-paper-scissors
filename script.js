@@ -17,6 +17,7 @@ function getComputerChoice (arr) {
 function addRoundsResultContainer () {
   const body = document.querySelector('body');
   const roundsResultContainer = document.createElement('div');
+  roundsResultContainer.id = 'rounds-results-container';
   body.appendChild(roundsResultContainer);
 }
 
@@ -30,7 +31,7 @@ function playRound (e) {
   const computerChoice = getComputerChoice(WEAPONS);
   const playerChoice = e.target.value;
   if (roundIsATie(playerChoice, computerChoice)) {
-  
+    printRoundResult("it's a tie");
   } else {
     
   }
@@ -46,6 +47,13 @@ function addClickEventToButtons () {
 
 function roundIsATie (choicePlayer, choiceComputer) {
   return choicePlayer === choiceComputer ? true : false;
+}
+
+function printRoundResult (message) {
+  let paragraph = document.createElement('p');
+  paragraph.innerText = message;
+  const roundsResultContainer = document.querySelector('#rounds-results-container');
+  roundsResultContainer.appendChild(paragraph);
 }
 
 setUpGame();
