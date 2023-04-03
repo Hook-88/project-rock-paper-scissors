@@ -20,8 +20,17 @@ function addRoundsResultContainer () {
   body.appendChild(roundsResultContainer);
 }
 
+function setUpGame () {
+  displayScores(playerScore, computerScore);
+  addRoundsResultContainer()
+}
 
-displayScores(playerScore, computerScore);
+setUpGame();
+
+
+
+
+
 
 
 
