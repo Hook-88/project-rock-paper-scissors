@@ -1,116 +1,59 @@
-//create const array WEAPONS
-const WEAPONS = [];
-//push 'ROCK', 'PAPER', 'SCISSORS' to WEAPONS array
-WEAPONS.push('ROCK', 'PAPER', 'SCISSORS');
-let COMPUTERSCORE = 0;
-let PLAYERSCORE = 0;
-//create function computerChoice with weaponsArr as argument
-const computerChoice = (weaponsArr) => {
-  //generate random number between 0 and 2
-  //create let randomNumber
-  let randomNumber = 0;
-  //set randomNumber to Math.random()
-  randomNumber = Math.random();
-  //set randomNumber to randomNumber * length of weaponsArr
-  randomNumber *= weaponsArr.length;
-  //set randomNumber to Math.floot(randomNumber)
-  randomNumber = Math.floor(randomNumber);
-  //return weaponsArr[randomNumber]
-  return weaponsArr[randomNumber];
+//Create WEAPONS array
+const WEAPONS = ['ROCK', 'PAPER', 'SCISSORS'];
+//create playerScore
+
+//Create function to play a game
+
+
+const computerChoice = arr => {
+  let randomNumber = Math.floor(Math.random() * arr.length);
+  return arr[randomNumber];
 }
 
-//create function itsATie with playerSelection and computerSelection as arguments
-const itsATie = (playerSelection, computerSelection) => {
-  //check if the values are the same
-  //if true return true
-  //else return false
-  return playerSelection === computerSelection ? true : false
+
+const setUpGame = (playerScore, computerScore) => {
+  //display the beginning scores
+  displayScores(playerScore, computerScore);
+  //create empty round results container and add to body
+  const roundResultsContainer = document.createElement('div');
+  body.appendChild(roundResultsContainer);
 }
 
-//create function playerIsWinner with playerSelection and computerSelection as arguments
-const playerIsWinner = (playerSelection, computerSelection) => {
-  //check if (playerSelection equals 'ROCK' and computerSelection equals 'SCISSORS') OR (playerSelection equals 'PAPER' and computerSelection equals 'ROCK') OR (playerSelection equals 'SCISSORS' and computerSelection equals 'PAPER')
-  if (
-      (playerSelection === WEAPONS[0] && computerSelection === WEAPONS[2]) ||
-      (playerSelection === WEAPONS[1] && computerSelection === WEAPONS[0]) ||
-      (playerSelection === WEAPONS[2] && computerSelection === WEAPONS[1])
-      ) {
-      // if true return true  
-        return true
-        //else return false  
-      } else {
-        false
-      }
+const displayScores = (playerScore, computerScore) => {
+  const body = document.querySelector('body');
+  const playerScoreElement = document.querySelector('#score-player');
+  const computerScoreElement = document.querySelector('#score-computer');
+  playerScoreElement.innerHTML = playerScore;
+  computerScoreElement.innerHTML = computerScore;
+}
+
+playGame();
+
+const playGame = () => {
+  setUpGame(playerScore, computerScore);
+  //create score var
+  let playerScore = 0;
+  let computerScore = 0;
+  //get computer choice from Weapons Array
+  console.log(computerChoice(WEAPONS));
+
+
 }
 
 
 
-//create function singleRound with playerSelection and computerSelection as arguments
-const playRound = (playerSelection, computerSelection) => {
-  let playerDefSelection = playerSelection.toUpperCase();
-  if (itsATie(playerDefSelection, computerSelection)) {
-    return `It's a tie!`
-  } else if (playerIsWinner(playerDefSelection, computerSelection)) {
-    PLAYERSCORE++;
-    return `You win!, ${playerDefSelection} beats ${computerSelection}`
+const printMessage = (message) => {
+  if (typeof message !== 'string') {
+    console.log('arg is not a string, please enter a string value')
+    return false;
   } else {
-    COMPUTERSCORE++;
-    return `You lose!, ${computerSelection} beats ${playerDefSelection}`
+    let body = document.querySelector('body');
+    let paragraph = document.createElement('p');
+    paragraph.innerHTML = message;
+    body.appendChild(paragraph);
+    return true;
   }
 }
 
-// const game = () => {
-//   let playerWins = 0;
-//   let computerWins = 0;
-//   let ties = 0;
-//   for (let i = 0; i < 5; i++) {
-//     let player = prompt('Choose your weapon!');
-//     let computer = computerChoice(WEAPONS);
-//     let message = playRound(player, computer);
-//     if (message.substring(4,7) === 'win') {
-//       playerWins++;
-//       console.log(message);
-//     } else if (message.substring(4,7) === 'los') {
-//       computerWins++;
-//       console.log(message)
-//     } else {
-//       ties++
-//       console.log(message)
-//     }
-//   }
-//   console.log(`Player has won ${playerWins} times`);
-//   console.log(`Computer has won ${computerWins} times`);
-// }
 
-//game();
-
-const resultContainer = document.createElement('div');
-const buttonsContainer = document.querySelector('#button-container');
-const computerScoreElement = document.querySelector('#score-computer');
-const playerScoreElement = document.querySelector('#score-player');
-
-buttonsContainer.appendChild(resultContainer);
-
-const printMessage = (message, messageContainer) => {
-  let paragraph = document.createElement('p');
-  paragraph.innerHTML = message;
-  messageContainer.appendChild(paragraph);
-  return false;
-}
-
-const buttons = document.querySelectorAll('button');
-buttons.forEach( button => {
-  button.addEventListener('click', e => {
-    let gameRound = playRound(e.target.value, computerChoice(WEAPONS));  
-    printMessage(gameRound, resultContainer);
-    displayScores(PLAYERSCORE, COMPUTERSCORE);
-  })
-});
-
-const displayScores = (playerScore, computerScore) => {
-  computerScoreElement.innerHTML = computerScore;
-  playerScoreElement.innerHTML = playerScore;
-}
-
-displayScores(PLAYERSCORE, COMPUTERSCORE);
 
