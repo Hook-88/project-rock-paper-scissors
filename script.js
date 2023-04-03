@@ -22,10 +22,34 @@ function addRoundsResultContainer () {
 
 function setUpGame () {
   displayScores(playerScore, computerScore);
-  addRoundsResultContainer()
+  addClickEventToButtons();
+  addRoundsResultContainer();
+}
+
+function playRound (e) {
+  const computerChoice = getComputerChoice(WEAPONS);
+  const playerChoice = e.target.value;
+  if (roundIsATie(playerChoice, computerChoice)) {
+  
+  } else {
+    
+  }
+
+} 
+
+function addClickEventToButtons () {
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(function (button) {
+  button.addEventListener('click', playRound);
+});
+}
+
+function roundIsATie (choicePlayer, choiceComputer) {
+  return choicePlayer === choiceComputer ? true : false;
 }
 
 setUpGame();
+
 
 
 
