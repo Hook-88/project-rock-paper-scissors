@@ -30,7 +30,12 @@ function setUpGame () {
 function playRound (e) {
   const computerChoice = getComputerChoice(WEAPONS);
   const playerChoice = e.target.value;
-  printRoundResult(playerChoice, computerChoice);
+  if (!gameOver()) {
+    printRoundResult(playerChoice, computerChoice);
+  } else {
+    printMessage('Game Over!');
+  }
+ 
 }
 
 function printRoundResult (choicePlayer, choiceComputer) {
@@ -77,6 +82,11 @@ function playerIsRoundWinner (choicePlayer, choiceComputer) {
     return false;
   }
 }
+
+function gameOver () {
+  return playerScore > 4 || computerScore > 4 ? true : false;
+}
+  
 
 setUpGame();
 
