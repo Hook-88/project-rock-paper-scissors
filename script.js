@@ -7,7 +7,14 @@ function displayScores (scorePlayer, scoreComputer) {
   const computerScorePlaceholder = document.querySelector('#score-computer');
   playerScorePlaceholder.innerHTML = scorePlayer;
   computerScorePlaceholder.innerHTML = scoreComputer;
+  return true;
 }
 
+function getComputerChoice (arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+
 displayScores(playerScore, computerScore);
+
 
