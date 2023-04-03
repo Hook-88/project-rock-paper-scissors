@@ -39,8 +39,10 @@ function printRoundResult (choicePlayer, choiceComputer) {
   } else {
     if (playerIsRoundWinner(choicePlayer, choiceComputer)) {
       printMessage(`You win ${choicePlayer} beats ${choiceComputer}`);
+      displayScores(playerScore, computerScore);
     } else {
       printMessage(`You lose ${choicePlayer} beats ${choiceComputer}`);
+      displayScores(playerScore, computerScore);
     }
   }
 }
@@ -68,14 +70,12 @@ function playerIsRoundWinner (choicePlayer, choiceComputer) {
         (choicePlayer === 'PAPER' && choiceComputer === 'ROCK') ||
         (choicePlayer === 'SCISSORS' && choiceComputer === 'PAPER')
   ) {
+    playerScore++;
     return true;
   } else {
+    computerScore++;
     return false;
   }
-}
-
-function updateScores () {
-
 }
 
 setUpGame();
