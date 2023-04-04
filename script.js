@@ -1,4 +1,5 @@
 const WEAPONS = ['ROCK', 'PAPER', 'SCISSORS'];
+const BODY = document.querySelector('body');
 let playerScore = 0;
 let computerScore = 0;
 
@@ -15,10 +16,9 @@ function getComputerChoice (arr) {
 }
 
 function addRoundsResultContainer () {
-  const body = document.querySelector('body');
   const roundsResultContainer = document.createElement('div');
   roundsResultContainer.id = 'rounds-results-container';
-  body.appendChild(roundsResultContainer);
+  BODY.appendChild(roundsResultContainer);
 }
 
 function setUpGame () {
@@ -28,12 +28,16 @@ function setUpGame () {
 }
 
 function playRound (e) {
-  const computerChoice = getComputerChoice(WEAPONS);
-  const playerChoice = e.target.value;
   if (!gameOver()) {
+    const computerChoice = getComputerChoice(WEAPONS);
+    const playerChoice = e.target.value;
     printRoundResult(playerChoice, computerChoice);
+    if (gameOver()) {
+      printMessage('Game Over!');
+      
+    }
   } else {
-    printMessage('Game Over!');
+    return false;
   }
  
 }
@@ -60,7 +64,7 @@ function addClickEventToButtons () {
 }
 
 function roundIsATie (choicePlayer, choiceComputer) {
-  return choicePlayer === choiceComputer ? true : false;
+  return choicePlayer === choiceComputer;
 }
 
 function printMessage (message) {
@@ -84,8 +88,26 @@ function playerIsRoundWinner (choicePlayer, choiceComputer) {
 }
 
 function gameOver () {
-  return playerScore > 4 || computerScore > 4 ? true : false;
+  return playerScore > 4 || computerScore > 4 
 }
+
+function playerIsGameWinner () {
+  return playerScore > 4
+}
+
+function addResetButton (parent) {
+  const button = document.createElement('button');
+  button.id = "reset-btn";
+  parent.appendChild(button);
+}
+
+// function deleteRoundResults (roundsContainer) {
+//   while (roundsContainer.firstChild) {
+//     roundsContainer.removeChild(roundsContainer.firstChild)
+//   }
+// }
+
+
   
 
 setUpGame();
