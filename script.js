@@ -34,6 +34,8 @@ function playRound (e) {
     printRoundResult(playerChoice, computerChoice);
     if (gameOver()) {
       printMessage('Game Over!');
+      const roundsResultContainer = document.querySelector('#rounds-results-container');
+      addResetButton(roundsResultContainer);
       
     }
   } else {
@@ -98,16 +100,24 @@ function playerIsGameWinner () {
 function addResetButton (parent) {
   const button = document.createElement('button');
   button.id = "reset-btn";
+  button.innerText = 'Reset game';
   parent.appendChild(button);
+  button.addEventListener('click', resetGame);
 }
 
-// function deleteRoundResults (roundsContainer) {
-//   while (roundsContainer.firstChild) {
-//     roundsContainer.removeChild(roundsContainer.firstChild)
-//   }
-// }
+function deleteRoundResults (roundsContainer) {
+  while (roundsContainer.firstChild) {
+    roundsContainer.removeChild(roundsContainer.firstChild)
+  }
+}
 
-
+function resetGame () {
+  const roundsResultContainer = document.querySelector('#rounds-results-container');
+  deleteRoundResults(roundsResultContainer);
+  playerScore = 0;
+  computerScore = 0;
+  displayScores(playerScore, computerScore);
+}
   
 
 setUpGame();
